@@ -84,6 +84,7 @@ let HiFindTool = 'rg -H --color=never --no-heading --column --smart-case'
 
 " Status line
 Plug 'preservim/tagbar'
+Plug 'mhinz/vim-signify'
 Plug 'vim-airline/vim-airline'
 let g:airline#extensions#tagbar#flags = 'f'
 let g:airline#extensions#whitespace#mixed_indent_algo = 2
