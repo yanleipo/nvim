@@ -12,7 +12,7 @@ set termguicolors
 " Change .h header filetype to c instead of cpp
 au BufRead,BufNewFile *.h set ft=c
 
-set colorcolumn=80
+set colorcolumn=82
 highlight ColorColumn ctermbg=grey guibg=grey
 
 set list
@@ -201,3 +201,6 @@ nnoremap <leader>q :call tag_peek#ShowTag()<CR>
 " Keymap for blamer
 noremap <F9> :BlamerToggle<cr>
 
+" Keymap to enable/disable spell check
+noremap <F10> :setlocal spell spelllang=en_us<cr>
+noremap <F11> :setlocal nospell<cr>
