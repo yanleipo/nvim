@@ -1,12 +1,12 @@
 -- Setup language servers.
 local lspconfig = require('lspconfig')
 
--- lspconfig.clangd.setup {
---   cmd = {
---     "clangd",
---     "--offset-encoding=utf-16",
---   },
--- }
+lspconfig.clangd.setup {
+  cmd = {
+    "clangd",
+    "--offset-encoding=utf-16",
+  },
+}
 
 lspconfig.pyright.setup {}
 lspconfig.tsserver.setup {}
@@ -18,11 +18,8 @@ lspconfig.rust_analyzer.setup {
 }
 
 -- Global mappings.
--- See `:help vim.diagnostic.*` for documentation on any of the below functions
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
+-- Disable diagnostics for all languages
+vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
 
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
@@ -48,7 +45,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, opts)
     vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
     vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+    -- Use Trouble Plugin to preview references
+    -- vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
     vim.keymap.set('n', '<leader>f', function()
       vim.lsp.buf.format { async = true }
     end, opts)

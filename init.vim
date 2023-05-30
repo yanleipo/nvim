@@ -113,6 +113,9 @@ let g:tag_peek_float_config="MyFloatConfig"
 Plug 'APZelos/blamer.nvim'
 let g:blamer_enabled = 0
 
+Plug 'nvim-tree/nvim-web-devicons'
+Plug 'folke/trouble.nvim'
+
 " Initialize plugin system
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.
 call plug#end()
@@ -178,6 +181,8 @@ noremap <F2> :WhichKey<cr>
 " noremap <leader><space> :Telescope buffers<cr>
 noremap <leader><space> :Telescope find_files no_ignore=true hidden=true<cr>
 noremap <leader>fb :Telescope buffers<cr>
+noremap <leader>fr :Telescope lsp_references<cr>
+noremap <leader>fi :Telescope lsp_incoming_calls<cr>
 noremap <leader>ff :Telescope find_files no_ignore=true hidden=true<cr>
 noremap <leader>fg :Telescope live_grep<cr>
 noremap <leader>fh :Telescope help_tags<cr>
@@ -192,7 +197,7 @@ noremap <leader>fz :Telescope zoxide list<cr>
 noremap <leader>fd :Telescope file_browser hidden=true<cr>
 
 " Keymap for ctags
-map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+map <C-\> :split<CR>:exec("tag ".expand("<cword>"))<CR>
 map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 " Keymap for tag-peek
@@ -204,3 +209,18 @@ noremap <F9> :BlamerToggle<cr>
 " Keymap to enable/disable spell check
 noremap <F10> :setlocal spell spelllang=en_us<cr>
 noremap <F11> :setlocal nospell<cr>
+
+" Keymap for Trouble
+nnoremap gr <cmd>TroubleToggle lsp_references<cr>
+
+" Kemap for split management
+set splitbelow splitright
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+noremap <silent> <C-Left> :vertical resize +5<CR>
+noremap <silent> <C-Right> :vertical resize -5<CR>
+noremap <silent> <C-Up> :resize +5<CR>
+noremap <silent> <C-Down> :resize -5<CR>
