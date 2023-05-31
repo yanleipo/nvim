@@ -37,7 +37,7 @@ Plug 'folke/which-key.nvim'
 
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
-Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
 Plug 'nvim-lua/popup.nvim'
 Plug 'jvgrootveld/telescope-zoxide'
 Plug 'nvim-telescope/telescope-file-browser.nvim'
@@ -114,7 +114,8 @@ Plug 'APZelos/blamer.nvim'
 let g:blamer_enabled = 0
 
 Plug 'nvim-tree/nvim-web-devicons'
-Plug 'folke/trouble.nvim'
+Plug 'yanleipo/trouble.nvim'
+" Plug '/local/lyan/work/scripts/nvim_plugins/trouble.nvim'
 
 " Initialize plugin system
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.
@@ -137,6 +138,7 @@ lua require('config/telescope')
 lua require('config/diffview')
 lua require('config/which-key')
 lua require('config/toggleterm')
+lua require('config/trouble')
 
 
 " Remember cursor position
@@ -212,6 +214,8 @@ noremap <F11> :setlocal nospell<cr>
 
 " Keymap for Trouble
 nnoremap gr <cmd>TroubleToggle lsp_references<cr>
+nnoremap gi <cmd>TroubleToggle lsp_incoming_calls<cr>
+nnoremap gR <cmd>TroubleRefresh<cr>
 
 " Kemap for split management
 set splitbelow splitright
