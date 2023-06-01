@@ -6,6 +6,9 @@ lspconfig.clangd.setup {
     "clangd",
     "--offset-encoding=utf-16",
   },
+  settings = {
+    symbolicLinkSupport = true,
+  },
 }
 
 lspconfig.pyright.setup {}

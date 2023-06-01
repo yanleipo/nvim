@@ -181,11 +181,11 @@ noremap <F2> :WhichKey<cr>
 
 " Keymap for telescope
 " noremap <leader><space> :Telescope buffers<cr>
-noremap <leader><space> :Telescope find_files no_ignore=true hidden=true<cr>
+noremap <leader><space> :Telescope find_files no_ignore=true hidden=true follow=true<cr>
 noremap <leader>fb :Telescope buffers<cr>
 noremap <leader>fr :Telescope lsp_references<cr>
 noremap <leader>fi :Telescope lsp_incoming_calls<cr>
-noremap <leader>ff :Telescope find_files no_ignore=true hidden=true<cr>
+noremap <leader>ff :Telescope find_files no_ignore=true hidden=true follow=true<cr>
 noremap <leader>fg :Telescope live_grep<cr>
 noremap <leader>fh :Telescope help_tags<cr>
 noremap <leader>fw :Telescope grep_string<cr>
@@ -228,3 +228,6 @@ noremap <silent> <C-Left> :vertical resize +5<CR>
 noremap <silent> <C-Right> :vertical resize -5<CR>
 noremap <silent> <C-Up> :resize +5<CR>
 noremap <silent> <C-Down> :resize -5<CR>
+
+" Keymap to enable shift+insert to paste text
+" map! <S-Insert> <C-R>+
