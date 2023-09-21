@@ -90,7 +90,6 @@ let g:airline#extensions#tagbar#flags = 'f'
 let g:airline#extensions#whitespace#mixed_indent_algo = 2
 
 Plug 'nvim-tree/nvim-web-devicons'
-Plug 'sindrets/diffview.nvim'
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'yuki-yano/fzf-preview.vim', { 'branch': 'release/rpc' }
@@ -117,6 +116,9 @@ Plug 'nvim-tree/nvim-web-devicons'
 Plug 'yanleipo/trouble.nvim'
 " Plug '/local/lyan/work/scripts/nvim_plugins/trouble.nvim'
 
+Plug 'kevinhwang91/nvim-bqf'
+Plug 'tpope/vim-fugitive'
+
 " Initialize plugin system
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.
 call plug#end()
@@ -135,10 +137,10 @@ lua require('config/mason-lspconfig')
 lua require('config/nvim-lspconfig')
 lua require('config/nvim-treesitter')
 lua require('config/telescope')
-lua require('config/diffview')
 lua require('config/which-key')
 lua require('config/toggleterm')
 lua require('config/trouble')
+lua require('config/bqf')
 
 
 " Remember cursor position
@@ -160,17 +162,13 @@ noremap > :Hi } <cr>
 noremap < :Hi { <cr>
 noremap <F5>  :Hi save<cr>
 noremap <F6>  :Hi load<cr>
+" autocmd BufEnter * :Hi ==
 
 " keymap for gutentags_plus
 noremap  <leader>cs :GscopeFind s <C-R><C-W><cr>
 noremap <silent> <leader>cg :GscopeFind g <C-R><C-W><cr>
 noremap <silent> <leader>cc :GscopeFind c <C-R><C-W><cr>
 noremap <silent> <leader>ct :GscopeFind t <C-R><C-W><cr>
-
-" Keymap for diffview
-noremap <leader>do :DiffviewOpen<cr>
-noremap <leader>dc :DiffviewClose<cr>
-noremap <leader>dh :DiffviewFileHistory % -n20<cr>
 
 " Keymap for neoclip
 " noremap <leader>c :lua require('telescope').extensions.neoclip.default()<cr>
@@ -188,11 +186,8 @@ noremap <leader>fi :Telescope lsp_incoming_calls<cr>
 noremap <leader>ff :Telescope find_files no_ignore=true hidden=true follow=true<cr>
 noremap <leader>fg :Telescope live_grep<cr>
 noremap <leader>fh :Telescope help_tags<cr>
-noremap <leader>fw :Telescope grep_string<cr>
+noremap <leader>fw <Cmd>let @/='\<'.expand('<cword>').'\>'<bar>set hlsearch<CR> :Telescope grep_string<cr><C-R><C-W><cr>
 noremap <leader>fo :Telescope oldfiles<cr>
-noremap <leader>gc :Telescope git_commits<cr>
-noremap <leader>gs :Telescope git_status<cr>
-noremap <leader>gb :Telescope git_branch<cr>
 noremap <leader>fs :Telescope treesitter<cr>
 noremap <leader>fc :Telescope builtin<cr>
 noremap <leader>fz :Telescope zoxide list<cr>
@@ -224,10 +219,11 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+" Keymap for fugitive
+nnoremap <leader>gd :Gdiffsplit<cr>
+
 noremap <silent> <C-Left> :vertical resize +5<CR>
 noremap <silent> <C-Right> :vertical resize -5<CR>
 noremap <silent> <C-Up> :resize +5<CR>
 noremap <silent> <C-Down> :resize -5<CR>
 
-" Keymap to enable shift+insert to paste text
-" map! <S-Insert> <C-R>+

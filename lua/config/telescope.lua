@@ -9,6 +9,7 @@ require('telescope').setup({
     layout_config = {
       horizontal = { scroll_speed = 1, width = 0.9, preview_width = 0.5}
     },
+    file_ignore_patterns = { ".git" },
     vimgrep_arguments = {
       'rg',
       '--color=never',
@@ -24,6 +25,9 @@ require('telescope').setup({
   },
 })
 
+-- vim.keymap.set('n', '<leader>/', function()
+-- 	require('telescope.builtin').current_buffer_fuzzy_find( {} )
+-- end, { desc = '[/] Fuzzily search in current buffer]' })
 vim.keymap.set('n', '<leader>/', function()
-	require('telescope.builtin').current_buffer_fuzzy_find( {} )
-end, { desc = '[/] Fuzzily search in current buffer]' })
+	require('telescope.builtin').live_grep( {grep_open_files = true} )
+end, { desc = '[/] Search in opened buffers]' })
