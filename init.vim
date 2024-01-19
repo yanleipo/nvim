@@ -16,7 +16,8 @@ set colorcolumn=82
 highlight ColorColumn ctermbg=grey guibg=grey
 
 set list
-set listchars=tab:>-
+" set listchars=tab:>-
+set listchars=space:.,tab:>-
 
 " Treesitter folding
 set foldmethod=expr
@@ -191,7 +192,13 @@ noremap <leader>fo :Telescope oldfiles<cr>
 noremap <leader>fs :Telescope treesitter<cr>
 noremap <leader>fc :Telescope builtin<cr>
 noremap <leader>fz :Telescope zoxide list<cr>
-noremap <leader>fd :Telescope file_browser hidden=true<cr>
+noremap <leader>fl :Telescope file_browser hidden=true cwd=<c-r>=expand('%:p:h')<cr><cr>
+
+" Display current file name
+noremap <leader>fn :echo expand('%')<CR>
+
+" Display current file directory
+noremap <leader>fd :echo expand('%:p:h')<CR>
 
 " Keymap for ctags
 map <C-\> :split<CR>:exec("tag ".expand("<cword>"))<CR>
