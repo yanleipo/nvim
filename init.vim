@@ -1,4 +1,5 @@
 set clipboard+=unnamedplus
+set mouse =
 
 set nocompatible                                                                                                                                                                              
 set ruler                                                                                                                                                                                     
@@ -87,6 +88,7 @@ let HiFindTool = 'rg -H --color=never --no-heading --column --smart-case'
 Plug 'preservim/tagbar'
 Plug 'mhinz/vim-signify'
 Plug 'vim-airline/vim-airline'
+let g:airline#extensions#branch#displayed_head_limit = 20
 let g:airline#extensions#tagbar#flags = 'f'
 let g:airline#extensions#whitespace#mixed_indent_algo = 2
 
@@ -225,6 +227,11 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+nnoremap <A-Left> :wincmd \|<CR>
+nnoremap <A-Right> :wincmd \|<CR>
+nnoremap <A-Up> :wincmd _<CR>
+nnoremap <A-Down> :wincmd _<CR>
+nnoremap <A-=> :wincmd =<CR>
 
 " Keymap for fugitive
 nnoremap <leader>gd :Gdiffsplit<cr>
