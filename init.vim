@@ -1,5 +1,5 @@
 set clipboard+=unnamedplus
-set mouse =
+set mouse=a
 
 set nocompatible                                                                                                                                                                              
 set ruler                                                                                                                                                                                     
@@ -38,9 +38,9 @@ call plug#begin()
 Plug 'folke/which-key.nvim'
 
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
 Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
 Plug 'jvgrootveld/telescope-zoxide'
 Plug 'nvim-telescope/telescope-file-browser.nvim'
 Plug 'kkharji/sqlite.lua'
@@ -181,12 +181,10 @@ noremap <leader>c :Telescope neoclip<cr>
 noremap <F2> :WhichKey<cr>
 
 " Keymap for telescope
-" noremap <leader><space> :Telescope buffers<cr>
 noremap <leader><space> :Telescope find_files no_ignore=true hidden=true follow=true<cr>
 noremap <leader>fb :Telescope buffers<cr>
 noremap <leader>fr :Telescope lsp_references<cr>
 noremap <leader>fi :Telescope lsp_incoming_calls<cr>
-noremap <leader>ff :Telescope find_files no_ignore=true hidden=true follow=true<cr>
 noremap <leader>fg :Telescope live_grep<cr>
 noremap <leader>fh :Telescope help_tags<cr>
 noremap <leader>fw <Cmd>let @/='\<'.expand('<cword>').'\>'<bar>set hlsearch<CR> :Telescope grep_string<cr><C-R><C-W><cr>
